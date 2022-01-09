@@ -52,5 +52,5 @@ a path that leads to the command.
 
 //----- Resources -----//
 https://medium.com/@765/how-the-shell-works-internally-when-entering-a-command-42f08458870
-
+https://brennan.io/2015/01/16/write-a-shell-in-c/
 

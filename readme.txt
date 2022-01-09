@@ -7,7 +7,7 @@ Purpose - The purpose of this project is to begin transitioning from post
 CS3157 (Advanced Programming at Columbia University) to exploring concepts
 and projects that I find interesting (outside of academia)! 
 
-In writing a C-Shell, I will be recapping concepts covered in the 3157 
+In writing a shell in C, I will be recapping concepts covered in the 3157 
 and gain the confidence to tackle a larger project such as writing a 
 compiler, an operating system, or a VM!
 
@@ -18,8 +18,9 @@ TODO
 01/07/21 - I finally set up the dev environment I will be working in. To
 best replicate both my environment at work and in 3157, I set up a
 raspberiry pi running raspian and am SSH'ing into the pi. 
-01/09/21 - Today I will be exploring how shells work and plan how to 
-approach the project.
+01/08/21 - Today I will be exploring how shells work and plan how to 
+approach the project. I now have a deeper understanding of how shells work
+env vars, and how PATH is used.
 
 //----- Notes -----//
 What is a shell? command interpreter that allows user to access OS 

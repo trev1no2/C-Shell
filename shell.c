@@ -2,6 +2,13 @@
 #include <string.h> //strlen()
 #include <stdlib.h> //malloc()
 
+int printintro(){
+	printf("\n*****************************************\n");
+	printf("*\t\t\t\t\t*\n");
+       	printf("* \t Welcome to my C Shell! \t*\n");
+	printf("*\t\t\t\t\t*\n");
+	printf("*****************************************\n");
+	}
 
 char *getUserInput(){
 	char *buf = (char *)malloc(4096);
@@ -36,6 +43,7 @@ char *getParsedInput(char *tmp){
 int main(int argc, char *argv[]){
 	
 	//print intro to shell
+	printintro();
 	
 	while(1){
 		char *userInput = getUserInput();

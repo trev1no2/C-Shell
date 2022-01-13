@@ -56,25 +56,35 @@ int main(int argc, char *argv[]){
 	printintro();
 	
 	while(1){
+	
+	//----------//
 		//1. Get user Input
 		char *userInput = getUserInput();
-		printf("{%s}\n" , userInput);
+		//uncomment for user input debugging
+		//printf("{%s}\n" , userInput);
 		
+	//----------//
 		int c;
 		//2. Parsing user input
 		char * token;
 		char * array[4096];
 		memset(array, 0, sizeof(array));
-		int i = 0;
-		array[i] = strtok(userInput, " ");
-
-		while(array[i] != NULL){
-			array[++i] = strtok(NULL, " ");
+		
+		for(c = 0; c < 100; c++){
+			array[c] = strsep(&userInput, " ");
+			if(array[c] == NULL)
+				break;
+			if(strlen(array[c]) == 0)
+				c--;
 		}
-		int j = 0;
-		for (j = 0; j < 10; j++){
-			printf("{%s}\n",array[j]);
-		}
+//		int i = 0;
+//		array[i] = strtok(userInput, " ");
+//
+//		while(array[i] != NULL){
+//			array[++i] = strtok(NULL, " ");
+//		}
+		
+	//----------//
 		//3. executing the command
 		executeCommand(array);
 		

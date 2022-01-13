@@ -34,16 +34,16 @@ void executeCommand(char **commandArgs){
 		printf("Fork Failed, enter command again\n");
 		return;
 	}
-	if(pid == 0){
+	if(pid == 0){//child
 		//execute command here using execvp or execute file
 		//int execvp(const char *file, char *const argv[]);
 		int returnValue;
 		returnValue = execvp(commandArgs[0], commandArgs);
 		if (returnValue < 0)
 			printf("Error retrieving command...\n");
-		return;
+		exit(0);
 	}
-	if(pid > 0){
+	if(pid > 0){//parent
 		wait(NULL);
 		return;
 	}
@@ -71,7 +71,6 @@ int main(int argc, char *argv[]){
 		while(array[i] != NULL){
 			array[++i] = strtok(NULL, " ");
 		}
-
 		int j = 0;
 		for (j = 0; j < 10; j++){
 			printf("{%s}\n",array[j]);

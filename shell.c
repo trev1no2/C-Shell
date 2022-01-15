@@ -12,27 +12,12 @@ int printintro(){
 	printf("*****************************************\n");
 	}
 
-char *getUserInput(){
-	char *buf = malloc(4096);
-	if(!buf){perror("MALLOC ERROR\n"); exit(0);}
-	//Inside the actual shell loop. From here, we need to
-	//1. Read the command from std in 
-		//DONE
-	//2. Separate the command into the actual program and its arguments
-	//3. Execute the command w/ arguments
-	printf("> ");
-	fgets(buf, 4096, stdin);
-	buf[strlen(buf)-1] = '\0';
-	return buf;
-}
-
 void executeCommand(char **commandArgs){
 	
 	pid_t pid = fork();
 
 	if(pid == -1){
 		printf("Fork Failed, enter command again\n");
-		return;
 	}
 	if(pid == 0){//child
 		//execute command here using execvp or execute file
@@ -45,9 +30,9 @@ void executeCommand(char **commandArgs){
 	}
 	if(pid > 0){//parent
 		wait(NULL);
-		return;
+		//return;
 	}
-
+	return;
 }
 
 int main(int argc, char *argv[]){
@@ -59,35 +44,33 @@ int main(int argc, char *argv[]){
 	
 	//----------//
 		//1. Get user Input
-		char *userInput = getUserInput();
+		char *buf = malloc(4096);
+		if(!buf){perror("MALLOC ERROR\n"); exit(0);}
+		printf("> ");
+		fgets(buf, 4096, stdin);
+		buf[strlen(buf)-1] = '\0';
 		//uncomment for user input debugging
 		//printf("{%s}\n" , userInput);
-		
 	//----------//
 		int c;
 		//2. Parsing user input
-		char * token;
-		char * array[4096];
-		memset(array, 0, sizeof(array));
-		
+		char *token;
+		char *array[4096];
 		for(c = 0; c < 100; c++){
-			array[c] = strsep(&userInput, " ");
+			array[c] = strsep(&buf, " ");
 			if(array[c] == NULL)
 				break;
 			if(strlen(array[c]) == 0)
 				c--;
 		}
-//		int i = 0;
-//		array[i] = strtok(userInput, " ");
-//
-//		while(array[i] != NULL){
-//			array[++i] = strtok(NULL, " ");
-//		}
-		
+		//uncomment to print out the command entered
+		//for(int i = 0; i < 5; i++){printf("<%s>\n",array[i]);}
+		char * exit = "exit";
+		if(!strcmp(array[0], exit)){return 0;}
 	//----------//
 		//3. executing the command
 		executeCommand(array);
-		
+		free(buf);
 	}//end of while loop
 	return 0;
 }
